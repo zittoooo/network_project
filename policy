@@ -1,0 +1,21 @@
+// In this example, for simplicity, we will use a policy file that
+// gives global permission to anyone from anywhere. Do not use this
+// policy file in a production environment.
+
+grant {
+	
+
+	permission java.net.SocketPermission "*", "listen,accept,resolve";
+	permission java.net.SocketPermission "*", "connect,resolve";
+	permission java.io.FilePermission "ServerKey", "read";
+	permission java.io.FilePermission "IDList.txt", "write,read";
+	permission java.util.PropertyPermission "*", "write";
+	
+	 // allow activation groups to use certain system properties	
+    permission com.sun.rmi.rmid.ExecOptionPermission "-Djava.security.policy=${examples.activation.policy}";
+    permission com.sun.rmi.rmid.ExecOptionPermission "-Djava.class.path=no_classpath";
+    permission com.sun.rmi.rmid.ExecOptionPermission "-Dexamples.activation.impl.codebase=*";
+    permission com.sun.rmi.rmid.ExecOptionPermission "-Dexamples.activation.file=*";
+	
+};
+
